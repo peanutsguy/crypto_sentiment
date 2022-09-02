@@ -8,7 +8,7 @@ from azure.core.credentials import AzureKeyCredential
 def authenticate_client():
     ta_credential = AzureKeyCredential(secrets.key)
     text_analytics_client = TextAnalyticsClient(
-            endpoint=endpoint, 
+            endpoint=secrets.endpoint, 
             credential=ta_credential)
     return text_analytics_client
 
