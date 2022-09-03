@@ -20,18 +20,16 @@ def sentiment_analysis_with_opinion_mining(client,documents):
     positive_reviews = [doc for doc in doc_result if doc.sentiment == "positive"]
     negative_reviews = [doc for doc in doc_result if doc.sentiment == "negative"]
 
-    positive_mined_opinions = []
-    mixed_mined_opinions = []
-    negative_mined_opinions = []
+    pos = []
+    neu = []
+    neg = []
 
     for document in doc_result:
-        print("Document Sentiment: {}".format(document.sentiment))
-        print("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f}".format(
-            document.confidence_scores.positive,
-            document.confidence_scores.neutral,
-            document.confidence_scores.negative,
-        ))
-        print("\n")
+        pos.append(document.confidence_scores.positive)
+        neu.append(document.confidence_scores.neutral)
+        neg.append(document.confidence_scores.negative)
+    
+    return [sum(pos)/len(pos),sum(neu)/len(neu),sum(neg)/len(neg)]
 
 def get_today_news(query):
     today = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -42,18 +40,30 @@ def get_today_news(query):
 
 client = authenticate_client()
 
-filename = "demo.json"
-f = open(filename,"r")
-t = f.read()
-
-# t = get_today_news("ether")
+t = get_today_news("ethereum").text
 
 a = json.loads(t)
 r = []
 batch_limit = 10
+scores = {
+    "positive": [],
+    "neutral" : [],
+    "negative": []
+}
 
 for article in a["articles"]:
     r.append(article["description"])
     if len(r) == batch_limit:
-        sentiment_analysis_with_opinion_mining(client,r)
+        sentiment = sentiment_analysis_with_opinion_mining(client,r)
         r = []
+        scores["positive"].append(sentiment[0])
+        scores["neutral"].append(sentiment[1])
+        scores["negative"].append(sentiment[2])
+
+scores["average"] = {
+    "positive" : sum(scores["positive"])/len(scores["positive"]),
+    "neutral" : sum(scores["neutral"])/len(scores["neutral"]),
+    "negative" : sum(scores["negative"])/len(scores["negative"])
+}
+
+print(scores["average"])
