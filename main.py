@@ -33,7 +33,12 @@ def sentiment_analysis_with_opinion_mining(client,documents):
 
 def get_today_news(query):
     today = datetime.datetime.now().strftime("%Y-%m-%d")
-    payload = {"q":query,"from":today,"sortBy":"published","apiKey":secrets.newskey}
+    payload = {
+        "q"      : query,
+        "from"   : today,
+        "sortBy" : "published",
+        "apiKey" : secrets.newskey
+    }
     url = "https://newsapi.org/v2/everything"
     response = requests.get(url,params=payload)
     return response

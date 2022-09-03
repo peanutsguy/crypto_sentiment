@@ -13,4 +13,5 @@ If you wish to use this script _(at your own risk)_, you must create a `secrets.
 endpoint = [Azure Cognitive Service API endpoint]
 key = [Azure Cognitive Service API key]
 newskey = [News API key]
+cryptokey = [CoinAPI key]
 ```
