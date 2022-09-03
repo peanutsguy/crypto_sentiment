@@ -61,9 +61,9 @@ for article in a["articles"]:
         scores["negative"].append(sentiment[2])
 
 scores["average"] = {
-    "positive" : sum(scores["positive"])/len(scores["positive"]),
-    "neutral" : sum(scores["neutral"])/len(scores["neutral"]),
-    "negative" : sum(scores["negative"])/len(scores["negative"])
+    "positive" : round(sum(scores["positive"])/len(scores["positive"]),3),
+    "neutral" : round(sum(scores["neutral"])/len(scores["neutral"]),3),
+    "negative" : round(sum(scores["negative"])/len(scores["negative"]),3)
 }
 
 print(scores["average"])
