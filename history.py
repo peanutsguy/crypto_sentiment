@@ -15,7 +15,7 @@ def get_historical_data(days,crypto = "btc"):
     response = requests.get(url, headers=headers, params=payload)
     return response
 
-data = get_historical_data(30).text
+data = get_historical_data(30,"eth").text
 
 a = json.loads(data)
 
