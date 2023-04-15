@@ -1,0 +1,5 @@
+endpoint = "https://mgt-cryptosentiment.cognitiveservices.azure.com/"
+key = "57b961a1f91d45559e4a611f9a2808c0"
+newskey = "4b54bda3541a441ca8d8864fcad149d9"
+cryptokey = "71A4D5B6-1A71-4535-A0EE-8E5A74004682"
+openaikey = "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"
