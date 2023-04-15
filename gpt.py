@@ -15,7 +15,7 @@ def article_opinion(stock,article):
         engine="text-davinci-002",
         prompt=prompt,
         temperature=0.5,
-        max_tokens=1000,
+        max_tokens=500,
         n=1,
         stop=None,
         timeout=10,
@@ -56,8 +56,15 @@ def get_today_news(query):
 def webscrapper(URL):
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    job_elements = soup.find("article")
-    result = re.sub("<.*?>", " ", job_elements.text)
+    job_elements = soup.find("body")
+    text = re.sub("<.*?>", " ", job_elements.text)
+    # text = re.sub("<.*?>", " ", soup.prettify())
+    text = text.replace('\n','')
+    start = ""
+    while (start != text):
+        start = text
+        text = text.replace('  ',' ')
+    result = text
     return result
 
 stock = "Alibaba"
