@@ -83,7 +83,7 @@ def stock_analysis(stock):
     t = get_today_news(stock)
     a = json.loads(t)
 
-    print(a["totalResults"])
+    # print(a["totalResults"])
 
     opinions = []
 
