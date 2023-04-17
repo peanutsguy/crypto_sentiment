@@ -6,12 +6,13 @@ This script helps evaluate the average sentiment of news headlines. I'll be orie
 
 Based on Microsoft's [Quickstart: Sentiment analysis and opinion mining](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/quickstart?pivots=programming-language-python)
 
-## secrets.py
-If you wish to use this script _(at your own risk)_, you must create a `secrets.py` file in the root directory of the project with the following variables
+## secretkeys.py
+If you wish to use this script _(at your own risk)_, you must create a `secretkeys.py` file in the root directory of the project with the following variables
 
 ```python
 endpoint = [Azure Cognitive Service API endpoint]
 key = [Azure Cognitive Service API key]
 newskey = [News API key]
 cryptokey = [CoinAPI key]
+openaikey = [OpenAI key]
 ```
