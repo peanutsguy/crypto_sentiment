@@ -36,7 +36,7 @@ def article_opinion(stock,article):
     return summary
 
 def opinions_summary(stock,opinions):
-    prompt = f"You are an expert financial analyst. Give me your opinion and summary on the performance and outlook of {stock} according to the following opinions that are presented as a JSON string: '{opinions}'. Do not copy the original text from the opinions. You must make an executive summary."
+    prompt = f"You are an expert financial analyst. Give me your opinion and summary on the performance and outlook of {stock} according to the following opinions that are presented as a JSON string: '{opinions}'. Do not copy the original text from the opinions. You must make an executive summary with a maximum of 5 sentences."
     response = openai.Completion.create(
         engine="text-davinci-002",
         prompt=prompt,
