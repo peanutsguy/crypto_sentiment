@@ -20,10 +20,22 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
-        {% if output_text %}
+        {% if output_data %}
         <div class="col-sm-6">
-          <label for="output-text" class="form-label">Analysis</label>
-          <textarea class="form-control" id="output-text" name="output-text" rows="5" readonly>{{ output_text }}</textarea>
+          <div class="row">
+            <div class="col">
+              <label for="output-text" class="form-label">Analysis</label>
+              <textarea class="form-control" id="output-text" name="output-text" rows="5" readonly>{{ output_data.summary }}</textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>Art&iacute;culos ({{ output_data.articles }})</p>
+              {% for url in output_data.urls.split(", ") %}
+                  <a href="{{ url }}" target="_blank">{{ url }}</a><br>
+              {% endfor %}
+            </div>
+          </div>
         </div>
         {% endif %}
       </div>

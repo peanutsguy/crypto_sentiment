@@ -15,4 +15,5 @@ key = [Azure Cognitive Service API key]
 newskey = [News API key]
 cryptokey = [CoinAPI key]
 openaikey = [OpenAI key]
+scrapingbee = [Scraping Bee API key]
 ```

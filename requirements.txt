@@ -3,3 +3,4 @@ requests==2.26.0
 openai
 beautifulsoup4
 Flask
+scrapingbee

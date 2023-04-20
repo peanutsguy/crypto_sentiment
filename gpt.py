@@ -15,11 +15,11 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    output_text = None
+    output_data = {}
     if request.method == 'POST':
         input_text = request.form['stock']
-        output_text = stock_analysis(input_text)
-    return render_template('index.html', output_text=output_text)
+        output_data = stock_analysis(input_text)
+    return render_template('index.html', output_data=output_data)
 
 def article_opinion(stock,article):
     prompt = f"You are an expert financial analyst. Give me your opinion on the performance and outlook of {stock} according to the following text: '{article}'"
@@ -84,13 +84,15 @@ def stock_analysis(stock):
     t = get_today_news(stock)
     a = json.loads(t)
 
-    # print(a["totalResults"])
+    print(a["totalResults"])
 
     opinions = []
+    urls = []
 
     for article in a["articles"]:
         URL = article["url"]
-        # print(URL)
+        urls.append(URL)
+        print(URL)
         article = webscrapper(URL)
         summary = article_opinion(stock,article)
         # print(summary)
@@ -101,9 +103,17 @@ def stock_analysis(stock):
 
     final_summary = opinions_summary(stock,jopinions)
 
+    str_urls = ', '.join(urls)
+
+    output_data = {
+        "summary" : final_summary,
+        "articles": a["totalResults"],
+        "urls" : str_urls
+    }
+
     # print(jopinions)
     # print(final_summary)
-    return final_summary
+    return output_data
 
 if __name__ == '__main__':
     webbrowser.open("http://127.0.0.1:5000")
