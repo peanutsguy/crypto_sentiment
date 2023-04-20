@@ -1,0 +1,1 @@
+pyinstaller .\gpt.py --add-data templates;templates --add-data secretkeys.py;secretkeys.py --clean

@@ -5,6 +5,7 @@ import requests
 import datetime
 import openai
 import time
+import webbrowser
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 
@@ -105,4 +106,5 @@ def stock_analysis(stock):
     return final_summary
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    webbrowser.open("http://127.0.0.1:5000")
+    app.run(debug=False, host='127.0.0.1')
